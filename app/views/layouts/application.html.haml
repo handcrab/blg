@@ -4,7 +4,53 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Blg
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+
+    = stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700'
+
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = favicon_link_tag 'favicon.ico' 
     = csrf_meta_tags
   %body
-    = yield
+    #sidebar
+      #logo
+        = link_to root_path do 
+          = image_tag 'logo.png'      
+
+      %nav
+        %ul
+          %li.category Website
+          %li= link_to "Blog", root_path
+          %li= link_to "About" #, about_path
+        
+        %ul
+          %li.category Social
+          %li= link_to 'Twitter', '#'
+          %li= link_to 'Github', '#'
+          %li= mail_to '#', 'Email'
+
+        - #unless user_signed_in?
+        %p.sign_in= link_to 'Admin Login'#, new_user_session_path
+
+
+    #main_content
+      #header
+
+        = yield :title_bar
+        
+        - unless current_page? root_path
+          = link_to 'Back to All Posts', root_path
+        / - if current_page? root_path
+        /   %p All Posts
+        /   - #elsif current_page? about_path
+        / - else
+        /   = link_to 'Back to All Posts', root_path
+
+        - # user.signed_in?
+        .buttons
+          = link_to 'New Post', new_post_path, class: 'button'
+          %button.button Log out
+
+      - flash.each do |name, msg|
+        = content_tag :div, msg, class: 'alert'
+
+      = yield

@@ -1,7 +1,14 @@
-%h1.title= @post.title
-%p
-  %time.date(pubtime datetime="#{@post.created_at}")
-    = time_ago_in_words @post.created_at
-    ago
+#post_content
+  %h1.title= @post.title
+  %p.date
+    %time(pubtime datetime="#{@post.created_at}")
+      Submitted
+      = time_ago_in_words @post.created_at
+      ago
 
-%p.body= @post.body
+    - #if user_signed_in?
+    |
+    = link_to 'Edit', edit_post_path(@post)
+    = link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } 
+
+  %p.body= @post.body

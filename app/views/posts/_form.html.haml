@@ -1,0 +1,17 @@
+= form_for @post do |f|
+
+  - if @post.errors.any?
+    #errors
+      %h2= pluralize @post.errors.count, "error"
+      %ul
+        - @post.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.label 'Title'
+  = f.text_field :title
+
+  = f.label 'Body'
+  = f.text_area :body
+  %br
+  %br
+  = f.submit
