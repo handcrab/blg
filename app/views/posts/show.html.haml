@@ -1,0 +1,7 @@
+%h1.title= @post.title
+%p
+  %time.date(pubtime datetime="#{@post.created_at}")
+    = time_ago_in_words @post.created_at
+    ago
+
+%p.body= @post.body

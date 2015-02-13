@@ -1,0 +1,10 @@
+%h1 All posts
+
+- @posts.each do |post|
+  %article.post_wrapper
+    %h1.title= link_to post.title, post
+    %p
+      %time.date(pubtime datetime="#{post.created_at}") 
+        = post.created_at.strftime "%d %B %Y"
+    %br
+    %hr
