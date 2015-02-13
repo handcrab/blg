@@ -17,11 +17,13 @@
 @import 'normalize';
 
 $light-blue: #f5f7f9;
-$grey: #ddd; //#E4DFC9;
+$grey: #333; //#E4DFC9;
+$brown: #9A6119;
 
 html, body {
   font-family: 'Raleway', sans-serif;
   background: silver;
+  color: #666;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -41,16 +43,16 @@ a {
   height: 100%;
   background: $grey; //$light-blue;
   padding: 7em 0 0 0;
-  border-right: 1px solid #d6dce0;
+  // border-right: 1px solid #d6dce0;
   #logo {
     width: 120px;
     position: absolute;
     right: 3em;
-    top: 1.5em;
+    top: 0.5em;
 
     img {
       width: 100%;
-      height: auto;
+      height: auto;      
     }
   }
   ul {
@@ -61,12 +63,12 @@ a {
       font-weight: 700;
       font-size: 0.7em;
       text-transform: uppercase;
-      color: #33acb7;
+      color: darken($brown, 50);
     }
     li {
       padding: .5em 0;
       a {
-        color: #9eafba;
+        color: $brown; //#9eafba;
         text-decoration: none;
         transition: all .4s ease;
         &:hover {
