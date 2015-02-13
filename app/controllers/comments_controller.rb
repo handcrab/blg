@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: [:create, :destroy]
+  before_action :authenticate_user!, except: :create
 
   def create   
     @post.comments.create comment_params
